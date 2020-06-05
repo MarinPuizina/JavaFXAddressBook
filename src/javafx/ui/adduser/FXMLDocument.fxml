@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ui.adduser.FXMLDocumentController">
    <children>
       <VBox prefHeight="247.0" prefWidth="449.0">
          <children>
@@ -28,12 +28,12 @@
             </TextField>
             <HBox prefHeight="57.0" prefWidth="449.0">
                <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" prefHeight="69.0" prefWidth="200.0" stylesheets="@adduser.css" text="Add">
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addUser" prefHeight="69.0" prefWidth="200.0" stylesheets="@adduser.css" text="Add">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="200.0" stylesheets="@adduser.css" text="Cancel">
+                  <Button fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancel" prefHeight="69.0" prefWidth="200.0" stylesheets="@adduser.css" text="Cancel">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
