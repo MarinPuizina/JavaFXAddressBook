@@ -1,8 +1,13 @@
 package javafx.database;
 
-import java.beans.Statement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,14 +19,18 @@ public class DatabaseHandler {
     private static DatabaseHandler handler;
     
     private static String dbURL = "jdbc:derby:database;create=true";
+    private final String dbDriver = "org.apache.derby.jdbc.EmbeddedDriver";
     private static Connection conn = null;
     private static Statement stmt = null;
-    final String dbDriver = "org.apache.derby.jdbc.EmbeddedDriver";
+    
+    public DatabaseHandler() {
+        createConnection();
+    }
     
     /**
-     * Method for creating database connection
+     * Creating database connection
      */
-    void createConnection() {
+    private void createConnection() {
         
         try {
             Class.forName(dbDriver).newInstance();
@@ -32,6 +41,28 @@ public class DatabaseHandler {
             System.exit(0);
         }
         
+    }
+    
+    /**
+     * Creating default table in database.
+     */
+    private void createDefaultTable() {
+        
+        final String TABLE_NAME = "PERSON";
+        
+        try {
+            
+            stmt = conn.createStatement();
+            
+            DatabaseMetaData dbm = conn.getMetaData();
+            ResultSet table = dbm.getTables(null, null, TABLE_NAME.toUpperCase(), null);
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }
     
 }
