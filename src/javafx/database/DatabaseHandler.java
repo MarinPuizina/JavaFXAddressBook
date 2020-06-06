@@ -25,6 +25,7 @@ public class DatabaseHandler {
     
     public DatabaseHandler() {
         createConnection();
+        createDefaultTable();
     }
     
     /**
