@@ -55,12 +55,20 @@ public class DatabaseHandler {
             stmt = conn.createStatement();
             
             DatabaseMetaData dbm = conn.getMetaData();
-            ResultSet table = dbm.getTables(null, null, TABLE_NAME.toUpperCase(), null);
+            ResultSet tables = dbm.getTables(null, null, TABLE_NAME.toUpperCase(), null);
             
-            
+            if (tables.next()) {
+                System.out.println("Table " + TABLE_NAME + " already exists.");
+            } else {
+                stmt.execute("CREATE TABLE " + TABLE_NAME + "("
+                        + " firstName varchar(30),\n"
+                        + " lastName varchar(30),\n"
+                        + " email varchar(40) primary key"
+                        + ")");
+            }
             
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage() + " ---> Database setup");
         }
                 
     }
