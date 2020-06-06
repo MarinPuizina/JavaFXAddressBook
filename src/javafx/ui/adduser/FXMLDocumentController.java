@@ -2,6 +2,7 @@ package javafx.ui.adduser;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,10 +28,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button cancelButton;
     
+    DatabaseHandler databaseHandler;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Setting up database connection and creating table
+        databaseHandler = new DatabaseHandler();
     }    
 
     @FXML
