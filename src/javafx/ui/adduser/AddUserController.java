@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author marin
  */
-public class FXMLDocumentController implements Initializable {
+public class AddUserController implements Initializable {
     
     private Label label;
     @FXML
@@ -111,7 +111,7 @@ public class FXMLDocumentController implements Initializable {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
