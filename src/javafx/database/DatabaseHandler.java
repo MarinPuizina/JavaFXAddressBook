@@ -87,4 +87,21 @@ public class DatabaseHandler {
         return result;
     }
     
+    public boolean execAction(String qu) {
+        
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(qu);
+            
+            return true;
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), "Error Occured", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Exception at execQuery:dataHandler" + ex.getLocalizedMessage());
+            
+            return false;
+        }
+        
+    }
+    
 }
