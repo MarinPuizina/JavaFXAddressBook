@@ -1,8 +1,14 @@
 package javafx.ui.listuser;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.database.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.ui.adduser.AddUserController;
 
 /**
  * FXML Controller class
@@ -18,6 +25,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class ListUserController implements Initializable {
 
+    ObservableList<User> list = FXCollections.observableArrayList();
+    
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -36,6 +45,7 @@ public class ListUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         initColumns();
+        loadData();  
         
     }    
  
@@ -46,8 +56,36 @@ public class ListUserController implements Initializable {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         
     }
+
+    private void loadData() {
+        
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        
+        String qu = "SELECT * FROM PERSON";
+        ResultSet resultSet = databaseHandler.execQuery(qu);
+        
+        
+        try {
+                
+            while(resultSet.next()) {
+                
+                    String firstName = resultSet.getString("firstName");
+                    String lastName = resultSet.getString("lastName");
+                    String email = resultSet.getString("email");
+                    
+                    list.add(new User(firstName, lastName, email));
+                    
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        tableView.getItems().setAll(list);
+        
+    }
     
-    class User {
+    public static class User {
         
         private final SimpleStringProperty firstName;
         private final SimpleStringProperty lastName;
