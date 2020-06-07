@@ -14,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -34,6 +36,9 @@ public class FXMLDocumentController implements Initializable {
     private Button cancelButton;
     
     DatabaseHandler databaseHandler;
+    
+    @FXML
+    private AnchorPane rootPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,6 +93,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cancel(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
     }
     
     private void checkData() {
