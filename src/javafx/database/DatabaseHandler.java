@@ -72,6 +72,11 @@ public class DatabaseHandler {
                 
     }
     
+    /**
+     * Executing query
+     * @param query
+     * @return ResultSet of executed query
+     */
     public ResultSet execQuery(String query) {
         
         ResultSet result;
@@ -87,6 +92,11 @@ public class DatabaseHandler {
         return result;
     }
     
+    /**
+     * Executing action on database
+     * @param qu Query action for executing
+     * @return Boolean if action was successfully executed
+     */
     public boolean execAction(String qu) {
         
         try {
