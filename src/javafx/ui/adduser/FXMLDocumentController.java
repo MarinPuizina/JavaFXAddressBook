@@ -1,7 +1,11 @@
 package javafx.ui.adduser;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +39,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Setting up database connection and creating table
         databaseHandler = new DatabaseHandler();
+        checkData();
     }    
 
     @FXML
@@ -83,6 +88,25 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cancel(ActionEvent event) {
+    }
+    
+    private void checkData() {
+        
+        String qu = "SELECT email FROM PERSON";
+        ResultSet resultSet = databaseHandler.execQuery(qu);
+        
+        
+        try {
+                
+            while(resultSet.next()) {
+                    String emailCheck = resultSet.getString("email");
+                    System.out.println(emailCheck);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
