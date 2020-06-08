@@ -31,10 +31,12 @@ public class MainController implements Initializable {
 
     @FXML
     private void loadListUser(ActionEvent event) {
+        loadWindow("/javafx/ui/listuser/ListUser.fxml", "List All Users");
     }
 
     @FXML
     private void loadAddUser(ActionEvent event) {
+        loadWindow("/javafx/ui/adduser/AddUser.fxml", "Add New User");
     }
     
     void loadWindow(String location, String title) {
