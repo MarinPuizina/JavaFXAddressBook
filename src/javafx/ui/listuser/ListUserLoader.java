@@ -16,7 +16,7 @@ public class ListUserLoader extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("ListUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
         
         Scene scene = new Scene(root);
         

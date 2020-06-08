@@ -17,7 +17,7 @@ public class JavaFX extends Application {
         
         // Naming the Application "window"
         primaryStage.setTitle("Address Book");
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
         
         Scene scene = new Scene(root);
         
