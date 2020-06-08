@@ -14,16 +14,29 @@ import javax.swing.JOptionPane;
  */
 public class DatabaseHandler {
     
-    private static DatabaseHandler handler;
+    private static DatabaseHandler databaseHandler;
     
     private static String dbURL = "jdbc:derby:database;create=true";
     private final String dbDriver = "org.apache.derby.jdbc.EmbeddedDriver";
     private static Connection conn = null;
     private static Statement stmt = null;
     
-    public DatabaseHandler() {
+    private DatabaseHandler() {
         createConnection();
         createDefaultTable();
+    }
+    
+    /**
+     * Static factory method
+     * @return Instance of database handler
+     */
+    public static DatabaseHandler getInstance() {
+        
+        if(databaseHandler == null) {
+            databaseHandler = new DatabaseHandler();
+        }
+        
+        return databaseHandler;
     }
     
     /**

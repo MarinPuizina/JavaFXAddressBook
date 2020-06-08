@@ -43,7 +43,7 @@ public class AddUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setting up database connection and creating table
-        databaseHandler = new DatabaseHandler();
+        databaseHandler = DatabaseHandler.getInstance();
         checkData();
     }    
 

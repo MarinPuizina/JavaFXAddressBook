@@ -59,7 +59,7 @@ public class ListUserController implements Initializable {
 
     private void loadData() {
         
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         
         String qu = "SELECT * FROM PERSON";
         ResultSet resultSet = databaseHandler.execQuery(qu);
