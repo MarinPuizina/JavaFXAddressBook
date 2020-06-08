@@ -24,5 +24,9 @@ public class MainController implements Initializable {
     @FXML
     private void loadListUser(ActionEvent event) {
     }
+
+    @FXML
+    private void loadAddUser(ActionEvent event) {
+    }
     
 }
