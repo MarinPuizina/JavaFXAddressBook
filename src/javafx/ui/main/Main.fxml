@@ -10,13 +10,13 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ui.main.MainController">
    <children>
       <VBox alignment="CENTER" prefHeight="481.0" prefWidth="696.0">
          <children>
             <HBox alignment="CENTER" prefHeight="199.0" prefWidth="600.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="List Users" textFill="#5ca5d6">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadListUser" prefHeight="100.0" prefWidth="200.0" text="List Users" textFill="#5ca5d6">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
