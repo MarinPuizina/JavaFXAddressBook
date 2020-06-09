@@ -1,5 +1,6 @@
 package javafx.ui.listuser;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,14 +14,20 @@ import javafx.collections.ObservableList;
 import javafx.database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.ui.adduser.AddUserController;
+import javafx.ui.main.MainController;
 
 /**
  * FXML Controller class
@@ -144,6 +151,36 @@ public class ListUserController implements Initializable {
 
     @FXML
     private void handleUserEditOption(ActionEvent event) {
+        
+        User selectedForEdit = tableView.getSelectionModel().getSelectedItem();
+        
+        if (selectedForEdit == null) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("User was not selected, please select an user.");
+            alert.showAndWait();
+
+            return;
+        }
+        
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafx/ui/adduser/AddUser.fxml"));
+            Parent parent = loader.load();
+            
+            AddUserController controller = (AddUserController) loader.getController();
+            controller.inflateUI(selectedForEdit);
+            
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Edit User");
+            stage.setScene(new Scene(parent));
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public static class User {
