@@ -84,7 +84,7 @@ public class ListUserController implements Initializable {
             Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        tableView.getItems().setAll(list);
+        tableView.setItems(list);
 
     }
 
@@ -118,6 +118,9 @@ public class ListUserController implements Initializable {
                 cancelAlert.setHeaderText(null);
                 cancelAlert.setContentText("User has been deleted");
                 cancelAlert.showAndWait();
+                
+                list.remove(selectedForDeletion);
+                
 
             } else {
 
