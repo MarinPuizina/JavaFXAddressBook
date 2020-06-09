@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.ui.listuser.ListUserController;
 
 /**
  *
@@ -113,6 +114,18 @@ public class AddUserController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AddUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    
+    /**
+     * Used for inflating the UI fields
+     * @param user Object
+     */
+    public void inflateUI(ListUserController.User user) {
+        
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
+        email.setText(user.getEmail());               
         
     }
     
