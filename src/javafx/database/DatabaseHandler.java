@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.ui.listuser.ListUserController.User;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,6 +148,26 @@ public class DatabaseHandler {
         }
 
         return false;
+    }
+    
+    public boolean updateUser(User user) {
+        
+        try {
+            
+            String update = "UPDATE " + TABLE_NAME + " SET FIRSTNAME = ?, LASTNAME = ? WHERE EMAIL = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(update);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getEmail());
+            int result = preparedStatement.executeUpdate();
+            
+            return (result > 0);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;        
     }
 
 }
