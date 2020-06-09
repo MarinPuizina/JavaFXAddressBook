@@ -1,6 +1,7 @@
 package javafx.ui.adduser;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -41,6 +42,9 @@ public class AddUserController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     
+    private boolean isInEditMode = Boolean.FALSE;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setting up database connection and creating table
@@ -62,6 +66,10 @@ public class AddUserController implements Initializable {
             alert.setContentText("Please enter information in all fields.");
             alert.showAndWait();
             
+        } else if (isInEditMode) {
+            handleEditOperation();
+            
+            return;
         } else {
           
             String qu = "INSERT INTO PERSON VALUES ("
@@ -126,6 +134,31 @@ public class AddUserController implements Initializable {
         firstName.setText(user.getFirstName());
         lastName.setText(user.getLastName());
         email.setText(user.getEmail());               
+
+        isInEditMode = Boolean.TRUE;
+        
+    }
+
+    private void handleEditOperation() {
+
+        ListUserController.User user = new ListUserController.User(firstName.getText(), lastName.getText(), email.getText());
+        
+        if (databaseHandler.updateUser(user)) {
+            
+                Alert cancelAlert = new Alert(Alert.AlertType.INFORMATION);
+                cancelAlert.setHeaderText(null);
+                cancelAlert.setContentText("User has been edited");
+                cancelAlert.showAndWait();
+                
+        } else {
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Editing the user has failed");
+            alert.showAndWait();
+            
+        }
+        
         
     }
     

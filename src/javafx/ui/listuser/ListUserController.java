@@ -189,7 +189,7 @@ public class ListUserController implements Initializable {
         private final SimpleStringProperty lastName;
         private final SimpleStringProperty email;
 
-        User(String firstName, String lastName, String email) {
+        public User(String firstName, String lastName, String email) {
 
             this.firstName = new SimpleStringProperty(firstName);
             this.lastName = new SimpleStringProperty(lastName);
