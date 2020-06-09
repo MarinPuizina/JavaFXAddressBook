@@ -142,6 +142,10 @@ public class ListUserController implements Initializable {
 
     }
 
+    @FXML
+    private void handleUserEditOption(ActionEvent event) {
+    }
+
     public static class User {
 
         private final SimpleStringProperty firstName;
