@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.database.DatabaseHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -82,6 +83,13 @@ public class ListUserController implements Initializable {
         }
         
         tableView.getItems().setAll(list);
+        
+    }
+    
+    @FXML
+    private void handleUserDeleteOption(ActionEvent event) {
+        
+        
         
     }
     
