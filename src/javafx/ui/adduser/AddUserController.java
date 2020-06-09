@@ -68,7 +68,6 @@ public class AddUserController implements Initializable {
             
         } else if (isInEditMode) {
             handleEditOperation();
-            
             return;
         } else {
           

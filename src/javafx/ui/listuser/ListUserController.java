@@ -70,6 +70,8 @@ public class ListUserController implements Initializable {
 
     private void loadData() {
 
+        list.clear();
+        
         DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
 
         String qu = "SELECT * FROM PERSON";
@@ -177,9 +179,20 @@ public class ListUserController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.show();
             
+            stage.setOnCloseRequest((e) -> {
+                handleRefreshOption(new ActionEvent());
+            });
+            
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+
+    @FXML
+    private void handleRefreshOption(ActionEvent event) {
+        
+        loadData();
         
     }
 
