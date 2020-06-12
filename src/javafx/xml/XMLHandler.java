@@ -1,8 +1,9 @@
-package xml;
+package javafx.xml;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.database.DatabaseHandler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,6 +27,7 @@ public class XMLHandler {
 
     private final String PERSONS_XML = "persons.xml";
 
+    DatabaseHandler databaseHandler;
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder;
 
@@ -69,18 +71,79 @@ public class XMLHandler {
 
     }
 
-    //deleteElement()
-
     private void writeContentIntoXml(Document doc) throws TransformerFactoryConfigurationError, TransformerConfigurationException, TransformerException {
-        
+
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(PERSONS_XML);
         transformer.transform(source, result);
+
+        System.out.println("Updated the " + PERSONS_XML);
+
+    }
+
+    /**
+     * Looping through the XML Elements Persisting them into a database Deleting
+     * them from XML
+     */
+    public void persistXMLElements() {
+
+        String firstName;
+        String lastName;
+        String email;
+
+        try {
+
+            builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(PERSONS_XML);
+
+            NodeList childNodes = doc.getChildNodes();
+            Element rootNode = (Element) childNodes.item(0);
+            System.out.println("root node --> " + rootNode.getNodeName());
+
+            NodeList personList = rootNode.getElementsByTagName("person");
+            Element person;
+
+            for (int i = 0; i < personList.getLength(); i++) {
+
+                person = (Element) personList.item(i);
+                email = person.getAttribute("email");
+
+                NodeList firstNameNodes = person.getElementsByTagName("firstName");
+                Element firstNameElement = (Element) firstNameNodes.item(0);
+                firstName = firstNameElement.getTextContent();
+
+                NodeList lastNameNodes = person.getElementsByTagName("lastName");
+                Element lastNameElement = (Element) lastNameNodes.item(0);
+                lastName = lastNameElement.getTextContent();
+
+                System.out.printf("Email: %s First Name: %s Last Name: %s", email, firstName, lastName);
+                System.out.println();
+
+                // Persiting data into database
+                databaseHandler = DatabaseHandler.getInstance();
+                databaseHandler.execAction(firstName, lastName, email);
+
+                deleteElement(doc, rootNode, person);
+
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void deleteElement(Document doc, Element rootNode, Element person) {
         
-        System.out.println("Added element to the " + PERSONS_XML);
+        try {
+            rootNode.removeChild(person);
+            writeContentIntoXml(doc);
+        } catch (TransformerFactoryConfigurationError | TransformerException ex) {
+            Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
-    
+
 }
