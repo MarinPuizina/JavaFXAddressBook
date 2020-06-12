@@ -73,7 +73,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Exit" textFill="#5ca5d6">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadExitProcess" prefHeight="100.0" prefWidth="200.0" text="Exit" textFill="#5ca5d6">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>

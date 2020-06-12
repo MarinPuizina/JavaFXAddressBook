@@ -54,5 +54,9 @@ public class MainController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void loadExitProcess(ActionEvent event) {
+    }
     
 }
