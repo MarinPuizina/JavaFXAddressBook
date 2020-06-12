@@ -1,4 +1,4 @@
-package XML;
+package xml;
 
 import java.io.IOException;
 import java.util.logging.Level;
