@@ -1,12 +1,8 @@
 package javafx.ui.adduser;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
