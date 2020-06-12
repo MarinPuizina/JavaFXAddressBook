@@ -1,5 +1,6 @@
 package javafx.database;
 
+import xml.XMLHandler;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -109,19 +110,33 @@ public class DatabaseHandler {
     }
 
     /**
-     * Executing action on database
-     *
-     * @param qu Query action for executing
-     * @return Boolean if action was successfully executed
+     * 
+     * @param userFirstName
+     * @param userLastName
+     * @param userEmail
+     * @return 
      */
-    public boolean execAction(String qu) {
+    public boolean execAction(String userFirstName, String userLastName, String userEmail) {
+
+        String qu = "INSERT INTO PERSON VALUES ("
+                + "'" + userFirstName + "',"
+                + "'" + userLastName + "',"
+                + "'" + userEmail + "'"
+                + ")";
+
+        System.out.println(qu);
 
         try {
+            
             stmt = conn.createStatement();
             stmt.execute(qu);
+            
+            // TODO call this method from the catch clause
+            new XMLHandler().addElement(userFirstName, userLastName, userEmail);
 
             return true;
         } catch (SQLException ex) {
+            System.out.println("DB Error code --> " + ex.getErrorCode());
             JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), "Error Occured", JOptionPane.ERROR_MESSAGE);
             System.out.println("Exception at execQuery:dataHandler" + ex.getLocalizedMessage());
 
@@ -149,25 +164,25 @@ public class DatabaseHandler {
 
         return false;
     }
-    
+
     public boolean updateUser(User user) {
-        
+
         try {
-            
+
             String update = "UPDATE " + TABLE_NAME + " SET FIRSTNAME = ?, LASTNAME = ? WHERE EMAIL = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(update);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getEmail());
             int result = preparedStatement.executeUpdate();
-            
+
             return (result > 0);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return false;        
+
+        return false;
     }
 
 }
