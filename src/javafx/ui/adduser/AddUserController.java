@@ -70,16 +70,8 @@ public class AddUserController implements Initializable {
             handleEditOperation();
             return;
         } else {
-          
-            String qu = "INSERT INTO PERSON VALUES ("
-                    + "'" + userFirstName + "',"
-                    + "'" + userLastName + "',"
-                    + "'" + userEmail + "'"
-                    + ")";
             
-            System.out.println(qu);
-            
-            if(databaseHandler.execAction(qu)) {
+            if(databaseHandler.execAction(userFirstName, userLastName, userEmail)) {
                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
