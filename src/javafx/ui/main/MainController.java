@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.application.Platform;
+import javafx.xml.XMLHandler;
 
 /**
  * FXML Controller class
@@ -60,7 +61,7 @@ public class MainController implements Initializable {
     private void loadExitProcess(ActionEvent event) {
         
         //TODO Insert xml elements into db
-        
+        new XMLHandler().persistXMLElements();
         
         System.out.println("Exiting the application.");
         Platform.exit();
