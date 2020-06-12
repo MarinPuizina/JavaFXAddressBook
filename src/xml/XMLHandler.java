@@ -10,6 +10,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
@@ -58,14 +59,7 @@ public class XMLHandler {
 
             rootNode.appendChild(personElement);
 
-            // write the content into xml file
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(PERSONS_XML);
-            transformer.transform(source, result);
-
-            System.out.println("Added element to the xml file.");
+            writeContentIntoXml(doc);
 
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,4 +70,17 @@ public class XMLHandler {
     }
 
     //deleteElement()
+
+    private void writeContentIntoXml(Document doc) throws TransformerFactoryConfigurationError, TransformerConfigurationException, TransformerException {
+        
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(PERSONS_XML);
+        transformer.transform(source, result);
+        
+        System.out.println("Added element to the " + PERSONS_XML);
+        
+    }
+    
 }
