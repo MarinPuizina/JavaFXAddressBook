@@ -1,6 +1,6 @@
 package javafx.database;
 
-import xml.XMLHandler;
+import javafx.xml.XMLHandler;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -131,14 +131,15 @@ public class DatabaseHandler {
             stmt = conn.createStatement();
             stmt.execute(qu);
             
-            // TODO call this method from the catch clause
-            new XMLHandler().addElement(userFirstName, userLastName, userEmail);
-
             return true;
         } catch (SQLException ex) {
             System.out.println("DB Error code --> " + ex.getErrorCode());
             JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), "Error Occured", JOptionPane.ERROR_MESSAGE);
             System.out.println("Exception at execQuery:dataHandler" + ex.getLocalizedMessage());
+            
+            System.out.printf("Added the person %s %s %s into the Persons.xml", userFirstName, userLastName, userEmail);
+            System.out.println();
+            new XMLHandler().addElement(userFirstName, userLastName, userEmail);
 
             return false;
         }
