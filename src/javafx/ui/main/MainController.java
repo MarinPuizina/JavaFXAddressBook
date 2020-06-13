@@ -41,6 +41,12 @@ public class MainController implements Initializable {
         loadWindow("/javafx/ui/adduser/AddUser.fxml", "Add New User");
     }
     
+    /**
+     * Loading window
+     * 
+     * @param location
+     * @param title 
+     */
     void loadWindow(String location, String title) {
         
         try {
@@ -57,10 +63,14 @@ public class MainController implements Initializable {
         
     }
 
+    /**
+     * Adding elements from xml into database and closing app
+     * 
+     * @param event 
+     */
     @FXML
     private void loadExitProcess(ActionEvent event) {
         
-        //TODO Insert xml elements into db
         new XMLHandler().persistXMLElements();
         
         System.out.println("Exiting the application.");
