@@ -60,6 +60,9 @@ public class ListUserController implements Initializable {
 
     }
 
+    /**
+     * Populating cell values with data
+     */
     private void initColumns() {
 
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -68,6 +71,9 @@ public class ListUserController implements Initializable {
 
     }
 
+    /**
+     * Loading data to be displayed in List Users window
+     */
     private void loadData() {
 
         list.clear();
@@ -97,6 +103,11 @@ public class ListUserController implements Initializable {
 
     }
 
+    /**
+     * Deleting user from List User window
+     * 
+     * @param event 
+     */
     @FXML
     private void handleUserDeleteOption(ActionEvent event) {
 
@@ -151,6 +162,11 @@ public class ListUserController implements Initializable {
 
     }
 
+    /**
+     * Editing user from List User window
+     * 
+     * @param event 
+     */
     @FXML
     private void handleUserEditOption(ActionEvent event) {
         
@@ -189,13 +205,19 @@ public class ListUserController implements Initializable {
         
     }
 
+    /**
+     * Refreshing data on List Users window
+     * 
+     * @param event 
+     */
     @FXML
     private void handleRefreshOption(ActionEvent event) {
-        
         loadData();
-        
     }
 
+    /**
+     * User Object
+     */
     public static class User {
 
         private final SimpleStringProperty firstName;
