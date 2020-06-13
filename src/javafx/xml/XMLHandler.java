@@ -31,8 +31,7 @@ public class XMLHandler {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder;
 
-    //TODO 
-    //void findLastElement()
+    
     public void addElement(String firstName, String lastName, String email) {
 
         try {
@@ -42,7 +41,6 @@ public class XMLHandler {
 
             NodeList childNodes = doc.getChildNodes();
             Element rootNode = (Element) childNodes.item(0);
-            System.out.println("root node --> " + rootNode.getNodeName());
 
             Element personElement = doc.createElement("person");
             // Adding email as an ID attribute so that application
