@@ -110,11 +110,11 @@ public class DatabaseHandler {
     }
 
     /**
-     * 
+     *
      * @param userFirstName
      * @param userLastName
      * @param userEmail
-     * @return 
+     * @return
      */
     public boolean execAction(String userFirstName, String userLastName, String userEmail) {
 
@@ -127,16 +127,16 @@ public class DatabaseHandler {
         System.out.println(qu);
 
         try {
-            
+
             stmt = conn.createStatement();
             stmt.execute(qu);
-            
+
             return true;
         } catch (SQLException ex) {
             System.out.println("DB Error code --> " + ex.getErrorCode());
             JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), "Error Occured", JOptionPane.ERROR_MESSAGE);
             System.out.println("Exception at execQuery:dataHandler" + ex.getLocalizedMessage());
-            
+
             System.out.printf("Added the person %s %s %s into the Persons.xml", userFirstName, userLastName, userEmail);
             System.out.println();
             new XMLHandler().addElement(userFirstName, userLastName, userEmail);
@@ -178,6 +178,27 @@ public class DatabaseHandler {
             int result = preparedStatement.executeUpdate();
 
             return (result > 0);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public boolean findUser(String email) {
+
+        try {
+
+            String findUser = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE EMAIL = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(findUser);
+            preparedStatement.setString(1, email);
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                final int count = result.getInt(1);
+                return count == 1;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
