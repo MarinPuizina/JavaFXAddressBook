@@ -146,6 +146,12 @@ public class DatabaseHandler {
 
     }
 
+    /**
+     * Delete User from database
+     * 
+     * @param email
+     * @return 
+     */
     public boolean deleteUser(String email) {
 
         String deleteStatement = "DELETE FROM " + TABLE_NAME + " WHERE EMAIL = ?";
@@ -166,6 +172,12 @@ public class DatabaseHandler {
         return false;
     }
 
+    /**
+     * Update User in database
+     * 
+     * @param user
+     * @return 
+     */
     public boolean updateUser(User user) {
 
         try {
@@ -186,6 +198,12 @@ public class DatabaseHandler {
         return false;
     }
 
+    /**
+     * Find User in database
+     * 
+     * @param email
+     * @return 
+     */
     public boolean findUser(String email) {
 
         try {
