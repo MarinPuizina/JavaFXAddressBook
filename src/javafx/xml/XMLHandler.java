@@ -31,7 +31,6 @@ public class XMLHandler {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder;
 
-    
     public void addElement(String firstName, String lastName, String email) {
 
         try {
@@ -119,9 +118,12 @@ public class XMLHandler {
                 System.out.printf("Email: %s First Name: %s Last Name: %s", email, firstName, lastName);
                 System.out.println();
 
-                // Persiting data into database
                 databaseHandler = DatabaseHandler.getInstance();
-                databaseHandler.execAction(firstName, lastName, email);
+
+                if (!databaseHandler.findUser(email)) {
+                    // Persiting data into database
+                    databaseHandler.execAction(firstName, lastName, email);
+                }
 
                 deleteElement(doc, rootNode, person);
 
@@ -134,14 +136,14 @@ public class XMLHandler {
     }
 
     private void deleteElement(Document doc, Element rootNode, Element person) {
-        
+
         try {
             rootNode.removeChild(person);
             writeContentIntoXml(doc);
         } catch (TransformerFactoryConfigurationError | TransformerException ex) {
             Logger.getLogger(XMLHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
