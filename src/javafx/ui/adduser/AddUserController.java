@@ -48,6 +48,11 @@ public class AddUserController implements Initializable {
         checkData();
     }    
 
+    /**
+     * Adding user into database and xml file
+     * 
+     * @param event 
+     */
     @FXML
     private void addUser(ActionEvent event) {
         
@@ -87,6 +92,11 @@ public class AddUserController implements Initializable {
         
     }
 
+    /**
+     * Closing the window
+     * 
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event) {
         Stage stage = (Stage) rootPane.getScene().getWindow();
@@ -129,6 +139,9 @@ public class AddUserController implements Initializable {
         
     }
 
+    /**
+     * Editing selected User from a List Users Window
+     */
     private void handleEditOperation() {
 
         ListUserController.User user = new ListUserController.User(firstName.getText(), lastName.getText(), email.getText());
