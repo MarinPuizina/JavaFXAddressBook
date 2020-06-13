@@ -31,6 +31,13 @@ public class XMLHandler {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder;
 
+    /**
+     * Adding Elements to xml file
+     * 
+     * @param firstName
+     * @param lastName
+     * @param email 
+     */
     public void addElement(String firstName, String lastName, String email) {
 
         try {
@@ -68,6 +75,14 @@ public class XMLHandler {
 
     }
 
+    /**
+     * Writing content into XML file
+     * 
+     * @param doc
+     * @throws TransformerFactoryConfigurationError
+     * @throws TransformerConfigurationException
+     * @throws TransformerException 
+     */
     private void writeContentIntoXml(Document doc) throws TransformerFactoryConfigurationError, TransformerConfigurationException, TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -135,6 +150,13 @@ public class XMLHandler {
 
     }
 
+    /**
+     * Deleting Element from XML file
+     * 
+     * @param doc
+     * @param rootNode
+     * @param person 
+     */
     private void deleteElement(Document doc, Element rootNode, Element person) {
 
         try {
