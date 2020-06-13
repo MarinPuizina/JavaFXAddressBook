@@ -110,6 +110,7 @@ public class DatabaseHandler {
     }
 
     /**
+     * Executing action on database
      *
      * @param userFirstName
      * @param userLastName
