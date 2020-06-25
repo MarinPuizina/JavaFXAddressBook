@@ -14,3 +14,7 @@
 Listing all users stored in the databse. With ability to Refresh the list, edit data, delete the data.
 
 ![Image Of The List Users](https://i.imgur.com/dmgvZq5.jpg)
+
+Storing user into the database.
+
+![Image Of The Add User](https://i.imgur.com/YT5KGxr.jpg)
