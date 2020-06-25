@@ -1,3 +1,3 @@
 # JavaFXAddressBook
 
-![alt text](https://imgur.com/MeZQq5r)
+![Image Of The Application](https://imgur.com/MeZQq5r)
